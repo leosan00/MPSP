@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using MPSP.Persistency.Context;
 using System;
 using System.Collections.Generic;
 
@@ -7,10 +8,10 @@ namespace MPSP.Persistency.Repositories
     public class BaseRepository<TEntity> : IBaseRepository<TEntity> where TEntity : class
     {
 
-        protected readonly DbContext _dbContext;
+        protected readonly MPSPSearchContext _dbContext;
         protected readonly DbSet<TEntity> _dbSet;
 
-        public BaseRepository(DbContext dbContext)
+        public BaseRepository(MPSPSearchContext dbContext)
         {
             this._dbContext = dbContext;
             this._dbSet = this._dbContext.Set<TEntity>();

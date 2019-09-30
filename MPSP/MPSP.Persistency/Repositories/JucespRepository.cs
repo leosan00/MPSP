@@ -1,15 +1,21 @@
-﻿using System.Collections.Generic;
-using Microsoft.EntityFrameworkCore;
-using MPSP.Model.Model;
+﻿using MPSP.Model.Model;
+using MPSP.Persistency.Context;
 
 namespace MPSP.Persistency.Repositories
 {
     public class JucespRepository : IJucespRepository
     {
-        private readonly IBaseRepository<Jucesp> _baseRepository;
+        private readonly IBaseRepository<Jucesp> _repository;
+
         public JucespRepository(IBaseRepository<Jucesp> repository)
         {
-            _baseRepository = repository;
+            _repository = repository;
         }
+
+        public Jucesp Add(Jucesp jucesp)
+        {
+            return _repository.Add(jucesp);
+        }
+
     }
 }
