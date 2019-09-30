@@ -8,6 +8,7 @@ namespace MPSP.Search.Jucesp
 {
     public class Search
     {
+        //Directory.GetCurrentDirectory() testar esse metodo no lugar do caminho chumbado
         public string Jucesp()
         {
             var driver = new ChromeDriver(@"C:\GIT\MPSP_SelectPage\JUCESP\bin\Debug\netcoreapp2.2");
