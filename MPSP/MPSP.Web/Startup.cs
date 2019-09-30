@@ -1,16 +1,12 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using MPSP.Persistency.Context;
 using MPSP.Persistency.Repositories;
+using MPSP.Search.Jucesp;
 
 namespace MPSP.Web
 {
@@ -38,7 +34,11 @@ namespace MPSP.Web
 
             //repositories
             services.AddScoped(typeof(IBaseRepository<>), typeof(BaseRepository<>));
-            services.AddScoped(typeof(IJucespRepository), typeof(JucespRepository));
+            services.AddScoped<IJucespRepository, JucespRepository>();
+
+            //searches
+            services.AddScoped<ISearch, Search.Jucesp.Search>();
+
 
             //dbcontext
             services.AddDbContext<MPSPSearchContext>();
@@ -62,7 +62,12 @@ namespace MPSP.Web
             app.UseStaticFiles();
             app.UseCookiePolicy();
 
-            app.UseMvc();
+            app.UseMvc(routes =>
+            {
+                routes.MapRoute(
+                    name: "default",
+                    template: "{controller=Home}/{action=Index}/{id?}");
+            });
         }
     }
 }

@@ -1,13 +1,22 @@
-﻿using Newtonsoft.Json;
+﻿using MPSP.Persistency.Repositories;
+using Newtonsoft.Json;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using m = MPSP.Model.Model;
 
 namespace MPSP.Search.Jucesp
 {
-    public class Search
+    public class Search : ISearch
     {
+        private IJucespRepository _jucespRepository;
+        public Search(IJucespRepository jucespRepository)
+        {
+            _jucespRepository = jucespRepository;
+        }
+
         //Directory.GetCurrentDirectory() testar esse metodo no lugar do caminho chumbado
         public string Jucesp()
         {
@@ -47,8 +56,17 @@ namespace MPSP.Search.Jucesp
             IWebElement tbl2 = driver.FindElements(By.Id("dados_endereco")).FirstOrDefault();
             IList<IWebElement> tds2 = tbl2.FindElements(By.CssSelector("tbody tr td")).ToList();
 
-            var objToReturn = (from td in tds select ((IWebElement)td).Text).ToList();
+            var name = driver.FindElement(By.Id("ctl00_cphContent_frmPreVisualiza_lblEmpresa")).Text;
 
+
+            var objToReturn = (from td in tds select td.Text)
+                .Concat(from td in tds2 select td.Text)
+                .Distinct()
+                .ToList();
+
+            var jucesp = new m.Jucesp(name,12345);
+
+            _jucespRepository.Add(jucesp);
 
             var check = driver.FindElement(By.XPath("//html[1]/body[1]/div[4]/form[1]/div[3]/div[4]/div[1]/div[1]/div[2]/table[1]/tbody[1]/tr[2]/td[1]/div[1]/table[1]/tbody[1]/tr[3]/td[1]/input[1]"));
             check.Click();
