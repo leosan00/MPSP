@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using MPSP.Search.Jucesp;
+using m = MPSP.Model.Model;
 
 namespace MPSP.Web.Controllers
 {
@@ -17,8 +18,13 @@ namespace MPSP.Web.Controllers
 
         public IActionResult InfoCrim()
         {            
-            var teste = _search.Jucesp();
-            return View("Index");
+            var obj = _search.Jucesp();
+            return RedirectToAction("Jucesp",obj);
+        }
+
+        public IActionResult Jucesp(m.Jucesp obj)
+        {
+            return View(obj);
         }
     }
 }
