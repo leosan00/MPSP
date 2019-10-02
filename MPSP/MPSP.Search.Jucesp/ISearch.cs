@@ -2,6 +2,6 @@
 {
     public interface ISearch
     {
-        Model.Model.Jucesp Jucesp();
+        Model.Search.Jucesp Jucesp();
     }
 }

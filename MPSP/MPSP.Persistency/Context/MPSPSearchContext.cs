@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
-using MPSP.Model.Model;
+using MPSP.Model.Search;
 
 namespace MPSP.Persistency.Context
 {

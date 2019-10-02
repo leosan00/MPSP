@@ -3,7 +3,7 @@ using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using System.Collections.Generic;
 using System.Linq;
-using m = MPSP.Model.Model;
+using m = MPSP.Model.Search;
 
 namespace MPSP.Search.Jucesp
 {

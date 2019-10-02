@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using MPSP.Search.Jucesp;
-using m = MPSP.Model.Model;
+using m = MPSP.Model.Search;
 
 namespace MPSP.Web.Controllers
 {

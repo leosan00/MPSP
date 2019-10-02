@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace MPSP.Model.Model
+namespace MPSP.Model.Search
 {
     public class Jucesp 
     {

@@ -1,4 +1,4 @@
-﻿using MPSP.Model.Model;
+﻿using MPSP.Model.Search;
 using MPSP.Persistency.Context;
 
 namespace MPSP.Persistency.Repositories
