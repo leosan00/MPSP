@@ -23,7 +23,6 @@ namespace MPSP.Model.Search
 		public string Cep { get; set; }
 		public string Uf { get; set; }
 		public string Capital { get; set; }
-		//public string Id_jucesp { get; set; }
 
 	}
 }

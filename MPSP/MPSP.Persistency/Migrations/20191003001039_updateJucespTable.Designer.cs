@@ -4,14 +4,16 @@ using MPSP.Persistency.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace MPSP.Persistency.Migrations
 {
     [DbContext(typeof(MPSPSearchContext))]
-    partial class MPSPSearchContextModelSnapshot : ModelSnapshot
+    [Migration("20191003001039_updateJucespTable")]
+    partial class updateJucespTable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -53,40 +55,6 @@ namespace MPSP.Persistency.Migrations
                     b.HasKey("JucespId");
 
                     b.ToTable("Jucesp");
-                });
-
-            modelBuilder.Entity("MPSP.Model.Search.Siel", b =>
-                {
-                    b.Property<Guid>("SielId")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<string>("Codigo");
-
-                    b.Property<string>("DataDom");
-
-                    b.Property<string>("DataNascimento");
-
-                    b.Property<string>("Endereco");
-
-                    b.Property<string>("Municipio");
-
-                    b.Property<string>("Naturalidade");
-
-                    b.Property<string>("Nome");
-
-                    b.Property<string>("NomeMae");
-
-                    b.Property<string>("NomePai");
-
-                    b.Property<string>("Titulo");
-
-                    b.Property<string>("Uf");
-
-                    b.Property<string>("Zona");
-
-                    b.HasKey("SielId");
-
-                    b.ToTable("Siel");
                 });
 #pragma warning restore 612, 618
         }

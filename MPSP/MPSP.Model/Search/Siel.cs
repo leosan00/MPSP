@@ -1,4 +1,6 @@
-﻿namespace MPSP.Model.Search
+﻿using System;
+
+namespace MPSP.Model.Search
 {
     public class Siel
 	{
@@ -14,7 +16,7 @@
 		public string NomeMae { get; set; }
 		public string Naturalidade { get; set; }
 		public string Codigo { get; set; }
-		public string IdSiel { get; set; }
+		public Guid SielId { get; set; }
 
 	}
 }
