@@ -1,4 +1,5 @@
-﻿using MPSP.Model.Search;
+﻿using System.Collections.Generic;
+using MPSP.Model.Search;
 using MPSP.Persistency.Context;
 
 namespace MPSP.Persistency.Repositories
@@ -17,5 +18,9 @@ namespace MPSP.Persistency.Repositories
             return _repository.Add(jucesp);
         }
 
-    }
+		public IEnumerable<Jucesp> GetAll()
+		{
+			return _repository.GetAll();
+		}
+	}
 }

@@ -9,7 +9,9 @@ namespace MPSP.Persistency.Context
         public DbSet<Jucesp> Jucesp { get; set; }
         public DbSet<Siel> Siel { get; set; }
 
-        protected override void OnConfiguring(DbContextOptionsBuilder dbContextOptionsBuilder)
+		public DbSet<ClasseTeste> Teste { get; set; }
+
+		protected override void OnConfiguring(DbContextOptionsBuilder dbContextOptionsBuilder)
         {
             if (!dbContextOptionsBuilder.IsConfigured)
             {

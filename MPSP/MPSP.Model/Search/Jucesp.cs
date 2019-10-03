@@ -8,7 +8,6 @@ namespace MPSP.Model.Search
 		{
 
 		}
-
 		public Guid JucespId { get; set; }
 		public string Tipo_empresa { get; set; }
 		public string Dt_constituicao { get; set; }
