@@ -2,13 +2,22 @@
 using OpenQA.Selenium.Chrome;
 using System;
 using System.Linq;
+using System.Reflection;
+using MPSP.Persistency.Repositories;
 
 namespace MPSP.Search.Siel
 {
-	 public class Search
+	 public class Search:ISearch
 	{
-
+		
+		private  ISielRepository _sielRepository;
 		static Random randNum= new Random();
+
+		public Search(ISielRepository sielRepository)
+		{
+			_sielRepository = sielRepository;
+		}
+
 		public static int RandomNumber()
 		{
 			var number = randNum.Next(2000, 2000);
@@ -16,9 +25,9 @@ namespace MPSP.Search.Siel
 			return number;
 		}
 
-		public void Siel()
+		public Model.Search.Siel Siel()
 		{
-			IWebDriver driver = new ChromeDriver(@"C:\GIT\MPSP_SelectPage\JUCESP\bin\Debug\netcoreapp2.2");
+			IWebDriver driver = new ChromeDriver(@"C:\Users\lpsan\Documents\Leo\Repository_MPSP\MPSP_WEB_PROJECT_VS2019\MPSP\MPSP.Search.Jucesp\bin\Debug\netcoreapp2.2");
 
 			try
 			{
@@ -53,11 +62,6 @@ namespace MPSP.Search.Siel
 
 			System.Threading.Thread.Sleep(Search.RandomNumber());
 
-			var conexao = true;
-
-			if (conexao == true)
-			{
-				Console.WriteLine("Conexão Sucesso");
 
 				//-------------------------------Captura de dados (feito)
 
@@ -67,23 +71,7 @@ namespace MPSP.Search.Siel
 
 				System.Threading.Thread.Sleep(Search.RandomNumber());
 
-				//SielModel model = new SielModel();
-
-
-
-				//model.nome = doc.DocumentNode.SelectNodes("//table[@class='lista']/tbody/tr[2]/td[2]").FirstOrDefault().InnerHtml;
-				//model.titulo = doc.DocumentNode.SelectNodes("//table[@class='lista']/tbody/tr[3]/td[2]").FirstOrDefault().InnerHtml;
-				//model.dataNascimento= doc.DocumentNode.SelectNodes("//table[@class='lista']/tbody/tr[4]/td[2]").FirstOrDefault().InnerHtml;
-				//model.zona= doc.DocumentNode.SelectNodes("//table[@class='lista']/tbody/tr[5]/td[2]").FirstOrDefault().InnerHtml;
-				//model.endereco= doc.DocumentNode.SelectNodes("//table[@class='lista']/tbody/tr[6]/td[2]").FirstOrDefault().InnerHtml;
-				//model.municipio= doc.DocumentNode.SelectNodes("//table[@class='lista']/tbody/tr[7]/td[2]").FirstOrDefault().InnerHtml;
-				//model.uf= doc.DocumentNode.SelectNodes("//table[@class='lista']/tbody/tr[8]/td[2]").FirstOrDefault().InnerHtml;
-				//model.dataDom= doc.DocumentNode.SelectNodes("//table[@class='lista']/tbody/tr[9]/td[2]").FirstOrDefault().InnerHtml;
-				//model.nomePai= doc.DocumentNode.SelectNodes("//table[@class='lista']/tbody/tr[10]/td[2]").FirstOrDefault().InnerHtml;
-				//model.nomeMae= doc.DocumentNode.SelectNodes("//table[@class='lista']/tbody/tr[11]/td[2]").FirstOrDefault().InnerHtml;
-				//model.naturalidade= doc.DocumentNode.SelectNodes("//table[@class='lista']/tbody/tr[12]/td[2]").FirstOrDefault().InnerHtml;
-				//model.codigo= doc.DocumentNode.SelectNodes("//table[@class='lista']/tbody/tr[13]/td[2]").FirstOrDefault().InnerHtml;
-
+				
 				var titulos = doc.DocumentNode.SelectNodes("//table[@class='lista']/tbody/tr/td[1]").ToList();
 				var dados = doc.DocumentNode.SelectNodes("//table[@class='lista']/tbody/tr/td[2]").ToList();
 
@@ -100,35 +88,26 @@ namespace MPSP.Search.Siel
 
 				}
 
-				// Siel model = new Siel();
-				//PropertyInfo[] properties = typeof(SielModel).GetProperties();
-				//for (int i = 0; i < dados.Count; i++)
-				//{
-				//	properties[i].SetValue(model, dados[i].InnerText.ToString());
-				//	titulo[i] = titulos[i].InnerText.ToString();
-				//}
+			Model.Search.Siel model = new Model.Search.Siel();
+				PropertyInfo[] properties = typeof(Model.Search.Siel).GetProperties();
+				for (int i = 0; i < dados.Count; i++)
+				{
+					properties[i].SetValue(model, dados[i].InnerText.ToString());
+					titulo[i] = titulos[i].InnerText.ToString();
+				}
 				////-----------------------------------end
 
 				//RepositorySiel repository = new RepositorySiel();
-				//repository.Insert(model); 0
-
-
+				//repository.Insert(model);
 
 				//-----------------------------------end
-			}
-
-
-
-
-
-
 			System.Threading.Thread.Sleep(50000);
 
 			driver.Close();
+
+
+			return _sielRepository.Add(model);
 		}
-		static void Main(string[] args)
-		{
-			Console.WriteLine("Hello World!");
-		}
+		
 	}
 }

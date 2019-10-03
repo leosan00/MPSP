@@ -9,4 +9,9 @@
     <PackageReference Include="Selenium.WebDriver" Version="3.141.0" />
     <PackageReference Include="Selenium.WebDriver.ChromeDriver" Version="77.0.3865.4000" />
   </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\MPSP.Model\MPSP.Model.csproj" />
+    <ProjectReference Include="..\MPSP.Persistency\MPSP.Persistency.csproj" />
+  </ItemGroup>
 </Project>

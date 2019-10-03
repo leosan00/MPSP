@@ -6,7 +6,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using MPSP.Persistency.Context;
 using MPSP.Persistency.Repositories;
-using MPSP.Search.Jucesp;
+using j=MPSP.Search.Jucesp;
+using s=MPSP.Search.Siel;
 
 namespace MPSP.Web
 {
@@ -35,13 +36,15 @@ namespace MPSP.Web
             //repositories
             services.AddScoped(typeof(IBaseRepository<>), typeof(BaseRepository<>));
             services.AddScoped<IJucespRepository, JucespRepository>();
+			services.AddScoped<ISielRepository, SielRepository>();
 
-            //searches
-            services.AddScoped<ISearch, Search.Jucesp.Search>();
+			//searches
+			services.AddScoped<j.ISearch, Search.Jucesp.Search>();
+			services.AddScoped<s.ISearch, Search.Siel.Search>();
 
 
-            //dbcontext
-            services.AddDbContext<MPSPSearchContext>();
+			//dbcontext
+			services.AddDbContext<MPSPSearchContext>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

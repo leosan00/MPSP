@@ -22,6 +22,7 @@
     <ProjectReference Include="..\MPSP.Model\MPSP.Model.csproj" />
     <ProjectReference Include="..\MPSP.Persistency\MPSP.Persistency.csproj" />
     <ProjectReference Include="..\MPSP.Search.Jucesp\MPSP.Search.Jucesp.csproj" />
+    <ProjectReference Include="..\MPSP.Search.Siel\MPSP.Search.Siel.csproj" />
   </ItemGroup>
 
 
