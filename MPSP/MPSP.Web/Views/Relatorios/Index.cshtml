@@ -1,0 +1,25 @@
+﻿
+@{
+	Layout = "~/Pages/Shared/_Layout.cshtml";
+}
+
+<style>
+	.margin{
+		margin-top:20px;
+		margin-bottom: 40px;
+	}
+</style>
+
+<h1 class="margin">Relatórios</h1>
+
+
+
+<div class="container margin ">
+	@{ Html.RenderPartial("_SielPartial");}
+
+</div>
+
+<div class="container">
+	@{ Html.RenderPartial("_JucespPartial");}
+</div>
+

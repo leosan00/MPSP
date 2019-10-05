@@ -7,11 +7,11 @@ using MPSP.Persistency.Repositories;
 
 namespace MPSP.Search.Siel
 {
-	 public class Search:ISearch
+	public class Search : ISearch
 	{
-		
-		private  ISielRepository _sielRepository;
-		static Random randNum= new Random();
+
+		private ISielRepository _sielRepository;
+		static Random randNum = new Random();
 
 		public Search(ISielRepository sielRepository)
 		{
@@ -63,51 +63,62 @@ namespace MPSP.Search.Siel
 			System.Threading.Thread.Sleep(Search.RandomNumber());
 
 
-				//-------------------------------Captura de dados (feito)
+			//-------------------------------Captura de dados (feito)
 
 
-				var doc = new HtmlAgilityPack.HtmlDocument();
-				doc.LoadHtml(driver.PageSource);
+			var doc = new HtmlAgilityPack.HtmlDocument();
+			doc.LoadHtml(driver.PageSource);
 
-				System.Threading.Thread.Sleep(Search.RandomNumber());
-
-				
-				var titulos = doc.DocumentNode.SelectNodes("//table[@class='lista']/tbody/tr/td[1]").ToList();
-				var dados = doc.DocumentNode.SelectNodes("//table[@class='lista']/tbody/tr/td[2]").ToList();
-
-				string[] titulo = new string[titulos.Count];
-				var nomes = new string[dados.Count];
+			System.Threading.Thread.Sleep(Search.RandomNumber());
 
 
-				for (int i = 0; i < titulos.Count; i++)
-				{
-					titulo[i] = titulos[i].InnerText.ToString();
-					nomes[i] = dados[i].InnerText.ToString();
+			var titulos = doc.DocumentNode.SelectNodes("//table[@class='lista']/tbody/tr/td[1]").ToList();
+			var dados = doc.DocumentNode.SelectNodes("//table[@class='lista']/tbody/tr/td[2]").ToList();
 
-					Console.WriteLine(titulo[i].ToString() + ":" + nomes[i].ToString());
+			string[] titulo = new string[titulos.Count];
+			var nomes = new string[dados.Count];
 
-				}
 
+			for (int i = 0; i < titulos.Count; i++)
+			{
+				titulo[i] = titulos[i].InnerText.ToString();
+				nomes[i] = dados[i].InnerText.ToString();
+
+				Console.WriteLine(titulo[i].ToString() + ":" + nomes[i].ToString());
+
+			}
+
+			var j = 0;
 			Model.Search.Siel model = new Model.Search.Siel();
-				PropertyInfo[] properties = typeof(Model.Search.Siel).GetProperties();
-				for (int i = 0; i < dados.Count; i++)
+			PropertyInfo[] properties = typeof(Model.Search.Siel).GetProperties();
+			for (int i = 0; i <= properties.Length - 1; i++)
+			{
+				if (properties[i].PropertyType == typeof(Guid))
 				{
-					properties[i].SetValue(model, dados[i].InnerText.ToString());
-					titulo[i] = titulos[i].InnerText.ToString();
+					i++;
 				}
-				////-----------------------------------end
+				properties[i].SetValue(model, nomes[j]);
+				j++;
 
-				//RepositorySiel repository = new RepositorySiel();
-				//repository.Insert(model);
+			}
+			////-----------------------------------end
 
-				//-----------------------------------end
-			System.Threading.Thread.Sleep(50000);
+			//RepositorySiel repository = new RepositorySiel();
+			//repository.Insert(model);
+
+			//-----------------------------------end
+			System.Threading.Thread.Sleep(1000);
 
 			driver.Close();
 
 
 			return _sielRepository.Add(model);
 		}
+
+
 		
+
 	}
+
+	
 }

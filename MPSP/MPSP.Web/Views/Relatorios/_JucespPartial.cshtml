@@ -1,0 +1,51 @@
+﻿<h3>Jucesp</h3>
+
+<div class="container">
+	<table class="table table-hover table-responsive">
+		<thead>
+			<tr class="d-flex">
+				<th class="col-1 text-center" scope="col">Tipo de Empresa</th>
+				<th class="col-1 text-center" scope="col">Data de constituição</th>
+				<th class="col-2 text-center" scope="col">Início da atividades</th>
+				<th class="col-2 text-center" scope="col">Cnpj</th>
+				<th class="col-4 text-center" scope="col">Descrição</th>
+				<th class="col-2 text-center" scope="col">Logradouro</th>
+				<th class="col-2 text-center" scope="col">Numero do endereço</th>
+				<th class="col-2 text-center" scope="col">Bairro</th>
+				<th class="col-2 text-center" scope="col">Complemento</th>
+				<th class="col-2 text-center" scope="col">Municipio</th>
+				<th class="col-2 text-center" scope="col">Cep</th>
+				<th class="col-2 text-center" scope="col">Uf</th>
+				<th class="col-2 text-center" scope="col">Capital</th>
+			</tr>
+		</thead>
+		<tbody>
+
+			@{ foreach (var items in ViewBag.ListaJucesp)
+				{
+					<tr class="d-flex">
+						<td class="col-1 text-center">@items.Tipo_empresa</td>
+						<td class="col-1 text-center">@items.Dt_constituicao</td>
+						<td class="col-2 text-center">@items.Inicio_atv</td>
+						<td class="col-2 text-center">@items.Cnpj</td>
+						<td class="col-4">@items.Descricao</td>
+						<td class="col-2 text-center">@items.Logradouro</td>
+						<td class="col-2 text-center">@items.Numero_end</td>
+						<td class="col-2 text-center">@items.Bairro</td>
+						<td class="col-2 text-center">@items.Complemento</td>
+						<td class="col-2 text-center">@items.Municipio</td>
+						<td class="col-2 text-center">@items.Cep</td>
+						<td class="col-2 text-center">@items.Uf</td>
+						<td class="col-2 text-center">@items.Capital</td>
+					</tr>
+
+
+
+
+				}
+			}
+
+
+		</tbody>
+	</table>
+</div>

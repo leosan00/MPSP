@@ -4,6 +4,7 @@ namespace MPSP.Model.Search
 {
     public class Siel
 	{
+		public Guid SielId { get; set; }
 		public string Nome { get; set; }
 		public string Titulo { get; set; }
 		public string DataNascimento { get; set; }
@@ -16,7 +17,7 @@ namespace MPSP.Model.Search
 		public string NomeMae { get; set; }
 		public string Naturalidade { get; set; }
 		public string Codigo { get; set; }
-		public Guid SielId { get; set; }
+		
 
 	}
 }

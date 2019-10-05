@@ -6,13 +6,16 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using  MPSP.Model.Search;
+using System.Diagnostics;
 
 namespace MPSP.Search.Jucesp
 {
     public class Search : ISearch
     {
 
-        private IJucespRepository _jucespRepository;
+		
+
+		private IJucespRepository _jucespRepository;
 		static Random randNum = new Random();
 
 		public Search(IJucespRepository jucespRepository)
@@ -32,8 +35,7 @@ namespace MPSP.Search.Jucesp
 		public MPSP.Model.Search.Jucesp Jucesp()
         {
 
-
-            var driver = new ChromeDriver(@"C:\Users\lpsan\Documents\Leo\Repository_MPSP\MPSP_WEB_PROJECT_VS2019\MPSP\MPSP.Search.Jucesp\bin\Debug\netcoreapp2.2");
+			var driver = new ChromeDriver(@"C:\Users\lpsan\Documents\Leo\Repository_MPSP\MPSP_WEB_PROJECT_VS2019\MPSP\MPSP.Search.Jucesp\bin\Debug\netcoreapp2.2");
 
             driver.Url = "http://ec2-18-231-116-58.sa-east-1.compute.amazonaws.com/jucesp/index.html";
             var input = driver.FindElement(By.Id("ctl00_cphContent_frmBuscaSimples_txtPalavraChave"));

@@ -1,7 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using s=MPSP.Search.Siel;
+using s =MPSP.Search.Siel;
 using j = MPSP.Search.Jucesp;
 using m = MPSP.Model.Search;
+using p = MPSP.Persistency.Repositories;
 
 namespace MPSP.Web.Controllers
 {
@@ -9,7 +10,8 @@ namespace MPSP.Web.Controllers
     {
         private readonly j.ISearch _searchJu;
 		private readonly s.ISearch _searchSi;
-        public HomeController(j.ISearch searchJu, s.ISearch searchSi)
+
+		public HomeController(j.ISearch searchJu, s.ISearch searchSi)
         {
             _searchJu = searchJu;
 			_searchSi = searchSi;
@@ -19,28 +21,26 @@ namespace MPSP.Web.Controllers
             return View();
         }
 
-        public IActionResult InfoCrim()
+        public IActionResult Jucesp()
         {            
             var obj = _searchJu.Jucesp();
-            return RedirectToAction("Jucesp",obj);
-
-			
+			if (obj != null)
+			{
+				ViewBag.Msg = true;
+			}
+			return RedirectToAction("Index", "Home");
         }
 
-		public IActionResult InfoCrimSiel()
+		public IActionResult Siel()
 		{
 			var obj = _searchSi.Siel();
-			return RedirectToAction("Siel", obj);
+			if(obj != null)
+			{
+				ViewBag.Msg= true;
+			}
+			return RedirectToAction("Relatorio", "Siel");
 		}
 
-        public IActionResult Jucesp(m.Jucesp obj)
-        {
-            return View(obj);
-        }
-
-		public IActionResult Siel(m.Siel siel)
-		{
-			return View(siel);
-		}
+	
     }
 }

@@ -9,5 +9,7 @@ namespace MPSP.Persistency.Repositories
 	{
 		Siel Add(Siel siel);
 
+		IEnumerable<Siel> GetAll();
+
 	}
 }

@@ -17,5 +17,10 @@ namespace MPSP.Persistency.Repositories
 		{
 			return _repository.Add(siel);
 		}
+
+		public IEnumerable<Siel> GetAll()
+		{
+			return _repository.GetAll();
+		}
 	}
 }
